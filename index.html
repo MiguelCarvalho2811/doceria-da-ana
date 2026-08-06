@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<!-- ============================================================================
+  VITRINE DIGITAL | DOCERIA DA ANA
+  - Marcação semântica: header, main, section, article, footer
+  - Acessibilidade: aria-labels, hierarquia de títulos, links descritivos
+  - Links wa.me com mensagens personalizadas (URL Encoding) por produto
+============================================================================ -->
+<html lang="pt-BR">
+<head>
+    <!-- Codificação UTF-8: garante a renderização correta de acentos -->
+    <meta charset="UTF-8">
+
+    <!-- Viewport: habilita o layout responsivo em smartphones e tablets -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO básico: título e descrição exibidos nos buscadores -->
+    <title>Doceria da Ana — Doces artesanais feitos com amor</title>
+    <meta name="description" content="Doceria de bairro com doces artesanais: bolo de pote, brigadeiro gourmet, copo da felicidade e torta de limão. Peça pelo WhatsApp e receba em casa.">
+
+    <!-- Open Graph: pré-visualização amigável ao compartilhar em redes sociais -->
+    <meta property="og:title" content="Doceria da Ana — Doces artesanais">
+    <meta property="og:description" content="Doces feitos à mão, com carinho de quem vive de adoçar o seu dia.">
+    <meta property="og:type" content="website">
+
+    <!-- Cor da barra de endereço em navegadores móveis -->
+    <meta name="theme-color" content="#F7CAD0">
+
+    <!-- Fontes do Google: Playfair Display (títulos) + Poppins (textos) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Folha de estilos com design responsivo mobile-first -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ================= CABEÇALHO ================= -->
+    <header class="cabecalho">
+        <div class="container cabecalho__container">
+
+            <!-- Logotipo em texto estilizado (dispensa arquivos de imagem) -->
+            <a href="#inicio" class="cabecalho__logo" aria-label="Doceria da Ana — voltar ao início">Doceria <span>da Ana</span></a>
+
+            <!-- Menu de navegação principal -->
+            <nav class="nav" aria-label="Navegação principal">
+                <ul class="nav__lista">
+                    <li><a class="nav__link" href="#inicio">Início</a></li>
+                    <li><a class="nav__link" href="#cardapio">Doces</a></li>
+                    <li><a class="nav__link" href="#sobre">Sobre</a></li>
+                    <li><a class="nav__link" href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ================= SEÇÃO HERO ================= -->
+        <section id="inicio" class="hero">
+            <div class="container hero__conteudo">
+
+                <!-- Selo de diferenciação do negócio local -->
+                <p class="hero__selo">Doceira de bairro &middot; desde 2015</p>
+
+                <!-- Título de boas-vindas marcante -->
+                <h1 class="hero__titulo">Doceria da <span class="hero__destaque">Ana</span></h1>
+
+                <!-- Descrição rápida do negócio -->
+                <p class="hero__descricao">
+                    Doces artesanais feitos com ingredientes de verdade e muito carinho,
+                    preparados na esquina da sua casa. Do brigadeiro da vó ao bolo de pote
+                    dos sonhos: é só escolher e pedir no WhatsApp!
+                </p>
+
+                <!-- Chamada para ação (CTA): leva direto à vitrine -->
+                <a class="btn btn--mel" href="#cardapio">Ver Cardápio</a>
+            </div>
+        </section>
+
+        <!-- ================= SEÇÃO SOBRE ================= -->
+        <section id="sobre" class="sobre">
+            <div class="container">
+
+                <h2 class="titulo-secao">A nossa história</h2>
+
+                <div class="sobre__grid">
+                    <p class="sobre__texto">
+                        Tudo começou em 2015, na cozinha de casa, quando Ana — na época vendedora
+                        ambulante de brigadeiros — resolveu transformar a receita da família em um
+                        negócio de bairro. Hoje, a <strong>Doceria da Ana</strong> adoça a vida da
+                        vizinhança com doces feitos à mão, sem conservantes e com muito afeto:
+                        cada encomenda é preparada do jeito que a gente aprendeu com a vó, com
+                        capricho de sobra. Este site faz parte de um projeto de extensão
+                        universitária que leva pequenos negócios locais ao mundo digital.
+                    </p>
+
+                    <blockquote class="sobre__cita">
+                        &ldquo;Se o cliente prova, volta. Se volta, vira freguês.
+                        Se vira freguês, é da família.&rdquo; <cite>— Ana</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SEÇÃO CARDÁPIO ================= -->
+        <section id="cardapio" class="cardapio">
+            <div class="container">
+
+                <h2 class="titulo-secao">Nosso cardápio</h2>
+
+                <!-- Grid de produtos: cada produto é um <article> semântico -->
+                <div class="cardapio__grid">
+
+                    <!-- ---------- Produto 1 ---------- -->
+                    <article class="card">
+                        <div class="card__imagem card__imagem--ninho" role="img"
+                             aria-label="Bolo de Pote de Ninho com Morango"></div>
+                        <div class="card__conteudo">
+                            <h3 class="card__titulo">Bolo de Pote de Ninho com Morango</h3>
+                            <p class="card__descricao">Camadas macias de bolo, creme de ninho e morangos fresquinhos — o queridinho da vizinhança.</p>
+                            <p class="card__preco"><small>R$</small> 12,00</p>
+                            <!-- Link wa.me com mensagem personalizada (URL Encoding) -->
+                            <a class="btn btn--whatsapp"
+                               href="https://wa.me/554465910639?text=Ol%C3%A1%2C%20Ana%21%20Gostaria%20de%20encomendar%20o%20Bolo%20de%20Pote%20de%20Ninho%20com%20Morango%20%28R%24%2012%2C00%29%20que%20vi%20na%20sua%20Vitrine%20Digital%21"
+                               target="_blank" rel="noopener noreferrer"
+                               aria-label="Pedir Bolo de Pote de Ninho com Morango no WhatsApp">
+                                <svg class="btn__icone" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true">
+                                    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                                </svg>
+                                Pedir no WhatsApp
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- ---------- Produto 2 ---------- -->
+                    <article class="card">
+                        <div class="card__imagem card__imagem--brigadeiro" role="img"
+                             aria-label="Brigadeiro Gourmet Tradicional"></div>
+                        <div class="card__conteudo">
+                            <h3 class="card__titulo">Brigadeiro Gourmet Tradicional</h3>
+                            <p class="card__descricao">O clássico da casa: chocolate nobre, enrolado à mão no ponto perfeito e finalizado com granulado.</p>
+                            <p class="card__preco"><small>R$</small> 4,00 <span class="card__unidade">(unidade)</span></p>
+                            <!-- Mensagem personalizada para o Brigadeiro -->
+                            <a class="btn btn--whatsapp"
+                               href="https://wa.me/554465910639?text=Ol%C3%A1%2C%20Ana%21%20Gostaria%20de%20encomendar%20o%20Brigadeiro%20Gourmet%20Tradicional%20%28R%24%204%2C00%20a%20unidade%29%20que%20vi%20na%20sua%20Vitrine%20Digital%21"
+                               target="_blank" rel="noopener noreferrer"
+                               aria-label="Pedir Brigadeiro Gourmet Tradicional no WhatsApp">
+                                <svg class="btn__icone" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true">
+                                    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                                </svg>
+                                Pedir no WhatsApp
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- ---------- Produto 3 ---------- -->
+                    <article class="card">
+                        <div class="card__imagem card__imagem--brownie" role="img"
+                             aria-label="Copo da Felicidade de Brownie"></div>
+                        <div class="card__conteudo">
+                            <h3 class="card__titulo">Copo da Felicidade de Brownie</h3>
+                            <p class="card__descricao">Brownie fofinho e brigadeiro cremoso em camadas — felicidade que cabe num copo.</p>
+                            <p class="card__preco"><small>R$</small> 15,00</p>
+                            <!-- Mensagem personalizada para o Copo da Felicidade -->
+                            <a class="btn btn--whatsapp"
+                               href="https://wa.me/554465910639?text=Ol%C3%A1%2C%20Ana%21%20Gostaria%20de%20encomendar%20o%20Copo%20da%20Felicidade%20de%20Brownie%20%28R%24%2015%2C00%29%20que%20vi%20na%20sua%20Vitrine%20Digital%21"
+                               target="_blank" rel="noopener noreferrer"
+                               aria-label="Pedir Copo da Felicidade de Brownie no WhatsApp">
+                                <svg class="btn__icone" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true">
+                                    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                                </svg>
+                                Pedir no WhatsApp
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- ---------- Produto 4 ---------- -->
+                    <article class="card">
+                        <div class="card__imagem card__imagem--limao" role="img"
+                             aria-label="Torta de Limão Individual"></div>
+                        <div class="card__conteudo">
+                            <h3 class="card__titulo">Torta de Limão Individual</h3>
+                            <p class="card__descricao">Base crocante, creme de limão-siciliano no ponto e merengue dourado — leve e irresistível.</p>
+                            <p class="card__preco"><small>R$</small> 10,00</p>
+                            <!-- Mensagem personalizada para a Torta de Limão -->
+                            <a class="btn btn--whatsapp"
+                               href="https://wa.me/554465910639?text=Ol%C3%A1%2C%20Ana%21%20Gostaria%20de%20encomendar%20a%20Torta%20de%20Lim%C3%A3o%20Individual%20%28R%24%2010%2C00%29%20que%20vi%20na%20sua%20Vitrine%20Digital%21"
+                               target="_blank" rel="noopener noreferrer"
+                               aria-label="Pedir Torta de Limão Individual no WhatsApp">
+                                <svg class="btn__icone" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true">
+                                    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                                </svg>
+                                Pedir no WhatsApp
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SEÇÃO CONTATO ================= -->
+        <section id="contato" class="contato">
+            <div class="container">
+
+                <h2 class="titulo-secao">Fale com a gente</h2>
+
+                <div class="contato__grid">
+                    <div class="contato__item">
+                        <h3>WhatsApp</h3>
+                        <p>(44) 6591-0639</p>
+                        <a class="contato__link" href="https://wa.me/554465910639"
+                           target="_blank" rel="noopener noreferrer">Chamar agora</a>
+                    </div>
+
+                    <div class="contato__item">
+                        <h3>Endereço</h3>
+                        <p>Rua Maria das Graças Molina, 1563 — Centro, Ubiratã-PR</p>
+                    </div>
+
+                    <div class="contato__item">
+                        <h3>Horário</h3>
+                        <p>Segunda a sábado, das 9h às 19h</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= RODAPÉ ================= -->
+    <footer class="rodape">
+        <div class="container">
+
+            <p class="rodape__marca">Doceria da Ana — Feito com amor, na sua rua.</p>
+
+            <!-- Links de contato rápidos -->
+            <nav class="rodape__links" aria-label="Links de contato rápidos">
+                <a href="https://wa.me/554465910639" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                <a href="mailto:confeiteira.descomplicada@gmail.com">E-mail</a>
+            </nav>
+
+            <!-- Direitos autorais -->
+            <p class="rodape__nota">&copy; 2026 Doceria da Ana. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

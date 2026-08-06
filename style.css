@@ -1,0 +1,791 @@
+/* ============================================================================
+   style.css | Doceria da Ana
+   Visual premium artesanal boutique. Nenhuma dependência externa —
+   apenas CSS puro + fontes do Google.
+
+   Principais recursos:
+   1. Sistema de SOMBRAS EM CAMADAS (multi-layer box-shadow) com variáveis
+      próprias em :root (suave / papel / média / elevada / hover).
+   2. Sombras "coloridas" (marrom, rosa e dourado translúcidos — nunca
+      preto puro).
+   3. Profundidade: border-radius generoso, bordas translúcidas, blur
+      refinado no header e texturas sutis via gradientes (sem imagens).
+   4. Micro-interações: cubic-bezier, escala no hover, brilho interno
+      (inset) nos botões e glows coloridos.
+   5. Tipografia: pesos e letter-spacing elevados nos títulos, contraste
+      melhorado nos textos secundários.
+   ============================================================================ */
+
+/* ---------- 1. RESET PADRÃO ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* largura/altura incluem padding e borda */
+}
+
+/* ---------- 2. VARIÁVEIS DO GUIA DE ESTILO (paleta, tipografia e SOMBRAS) ---------- */
+:root {
+    /* --- Paleta original mantida --- */
+    --rosa-pastel:  #F7CAD0; /* rosa pastel — cor principal */
+    --rosa-claro:   #FCE7EA; /* variação suave para fundos */
+    --marrom-cacau: #6F4E37; /* marrom cacau — títulos e textos fortes */
+    --marrom-escuro:#4A3226; /* marrom profundo — rodapé e destaques */
+    --creme:        #FFFDF9; /* creme — fundo principal */
+    --mel:          #F4D068; /* dourado/mel — destaques e CTAs */
+    --mel-escuro:   #D9A63B; /* mel escuro — hover do CTA */
+    --whatsapp:     #25D366; /* verde oficial do WhatsApp */
+    --whatsapp-escuro: #1EBE57;
+    --texto:        #4A3B2E; /* cor de leitura confortável */
+    --texto-suave:  #6B5B4D; /* texto secundário (contraste melhorado) */
+
+    /* --- Tipografia --- */
+    --fonte-titulo: 'Playfair Display', Georgia, serif;  /* títulos elegantes */
+    --fonte-texto:  'Poppins', Arial, sans-serif;        /* textos e preços   */
+
+    /* --- Raio e transições premium --- */
+    --raio: 22px; /* border-radius dos cards: 16px → 22px (delicado) */
+    /* curva de desaceleração elegante (ease-in-out clássico refinado) */
+    --transicao: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    /* ============================================================
+       SISTEMA DE SOMBRAS EM CAMADAS (foco principal)
+       Escala de elevação: suave → papel → média → elevada → hover.
+       Cada nível empilha 2-3 camadas (contato + elevação + difusão)
+       para gerar profundidade realista, nunca sombra chapada.
+       ============================================================ */
+
+    /* Sombra de contato leve — header, selo, elementos "sentados" */
+    --sombra-suave:
+        0 2px 6px rgba(111, 78, 55, 0.05),
+        0 1px 3px rgba(111, 78, 55, 0.04);
+
+    /* Sombra de "papel" — citação e pequenos elementos sobre fundo claro */
+    --sombra-papel:
+        0 3px 10px rgba(111, 78, 55, 0.06),
+        0 1px 3px rgba(111, 78, 55, 0.04),
+        0 10px 26px rgba(247, 202, 208, 0.12);
+
+    /* Sombra média — caixas em repouso (cards, itens de contato) */
+    --sombra-media:
+        0 4px 16px rgba(111, 78, 55, 0.08),
+        0 8px 24px rgba(111, 78, 55, 0.06);
+
+    /* Sombra elevada — um degrau acima (hover de itens secundários) */
+    --sombra-elevada:
+        0 8px 24px rgba(111, 78, 55, 0.10),
+        0 16px 40px rgba(111, 78, 55, 0.08);
+
+    /* Sombra de hover dos cards — profunda e difusa (quase flutuando) */
+    --sombra-hover:
+        0 12px 32px rgba(111, 78, 55, 0.14),
+        0 20px 48px rgba(111, 78, 55, 0.10);
+
+    /* Glow colorido dos botões (dourado e verde) + brilho interno (volume) */
+    --sombra-botao-mel:
+        0 4px 14px rgba(244, 208, 104, 0.45),
+        0 2px 6px rgba(217, 166, 59, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    --sombra-botao-mel-hover:
+        0 8px 22px rgba(244, 208, 104, 0.55),
+        0 3px 8px rgba(217, 166, 59, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55),
+        inset 0 -3px 8px rgba(74, 50, 38, 0.10);
+    --sombra-botao-whatsapp:
+        0 4px 14px rgba(37, 211, 102, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    --sombra-botao-whatsapp-hover:
+        0 8px 22px rgba(37, 211, 102, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.50),
+        inset 0 -3px 8px rgba(255, 255, 255, 0.12);
+}
+
+/* ---------- 3. BASE GLOBAL ---------- */
+html {
+    scroll-behavior: smooth;            /* rolagem suave nas âncoras */
+    scroll-padding-top: 76px;           /* compensa o cabeçalho fixo  */
+}
+
+body {
+    font-family: var(--fonte-texto);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--texto);
+    background-color: var(--creme);
+}
+
+/* ---------- CORREÇÃO: bloqueio de overflow horizontal ----------
+   Garante que html/body nunca ultrapassem a largura da viewport.
+   - overflow-x: hidden → fallback amplamente suportado
+   - overflow-x: clip   → variante moderna que NÃO cria container de
+     rolagem, preservando o position: sticky do cabeçalho.            */
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;   /* fallback */
+    overflow-x: clip;     /* moderno — mantém sticky funcionando */
+}
+
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* Acessibilidade: foco visível para navegação por teclado */
+a:focus-visible,
+.btn:focus-visible {
+    outline: 3px solid var(--mel-escuro);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Respeita usuários sensíveis a movimento */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Container centralizado que limita a largura do conteúdo */
+.container {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+/* Título padrão de seção — mais peso, respiro e brilho dourado reforçado */
+.titulo-secao {
+    font-family: var(--fonte-titulo);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;            /* respiro sofisticado */
+    color: var(--marrom-cacau);
+    text-align: center;
+    margin-bottom: 1.75rem;
+    text-shadow: 0 1px 0 rgba(255, 253, 249, 0.9); /* relevo sutil */
+}
+/* Traço dourado com brilho central e fade nas pontas.
+   Sombra leve dourada para reforçar a presença do destaque */
+.titulo-secao::after {
+    content: '';
+    display: block;
+    width: 68px;
+    height: 4px;                       /* mais presente que antes (3px) */
+    margin: 0.65rem auto 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        var(--mel) 28%,
+        #F8E08E 50%,                   /* brilho central dourado */
+        var(--mel-escuro) 72%,
+        transparent 100%);
+    box-shadow: 0 2px 6px rgba(244, 208, 104, 0.35); /* glow leve do traço */
+}
+
+/* ---------- 4. BOTÕES (base + variantes premium) ---------- */
+.btn {
+    display: inline-flex;              /* centraliza ícone + texto */
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--fonte-texto);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.85rem 1.9rem;
+    border-radius: 999px;              /* formato pílula */
+    cursor: pointer;
+    transition: var(--transicao);      /* cubic-bezier em todos os hovers */
+}
+/* Micro-interação de clique: o botão "assenta" momentaneamente */
+.btn:active {
+    transform: translateY(0) scale(0.97);
+}
+.btn__icone {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+}
+
+/* Botão dourado/mel — CTA principal (hero).
+   Sombra dourada colorida em camadas + volume interno (inset).
+   No hover: o glow dourado "cresce" e o botão sobe. */
+.btn--mel {
+    background: linear-gradient(180deg, #F8DE90 0%, var(--mel) 55%, #ECC55B 100%);
+    color: var(--marrom-escuro);
+    box-shadow: var(--sombra-botao-mel);
+}
+/* (hover em @media (hover: hover) — ver seção 12) */
+
+/* Botão verde WhatsApp — pedidos dos produtos.
+   Sombra verde suave + elevação; inset superior dá volume "táctil". */
+.btn--whatsapp {
+    background: linear-gradient(180deg, #3BDB79 0%, var(--whatsapp) 60%, #1FB85B 100%);
+    color: #ffffff;
+    width: 100%;                       /* ocupa a largura do card no mobile */
+    box-shadow: var(--sombra-botao-whatsapp);
+}
+/* (hover em @media (hover: hover) — ver seção 12) */
+
+/* ---------- 5. CABEÇALHO (Flexbox) ---------- */
+.cabecalho {
+    position: sticky;                  /* menu sempre visível ao rolar */
+    top: 0;
+    z-index: 10;
+    background: rgba(255, 253, 249, 0.82);
+    /* vidro fosco: desfoque + saturação do que passa por baixo */
+    backdrop-filter: blur(12px) saturate(1.5);
+    -webkit-backdrop-filter: blur(12px) saturate(1.5);
+    border-bottom: 1px solid rgba(247, 202, 208, 0.55);
+    /* sombra muito suave e difusa — o menu "flutua" ao grudar no topo */
+    box-shadow: var(--sombra-suave);
+}
+
+/* Flexbox: logo à esquerda e menu à direita, alinhados verticalmente.
+   flex-wrap: nowrap garante uma única linha; min-width: 0 permite que
+   os filhos encolham dentro do flex sem gerar overflow horizontal. */
+.cabecalho__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+    min-width: 0;
+    flex-wrap: nowrap;
+}
+
+/* Permite que o bloco do menu encolha no flex (sem scroll horizontal) */
+.nav {
+    min-width: 0;
+}
+
+/* Logotipo — contraste elevado para presença de marca */
+.cabecalho__logo {
+    font-family: var(--fonte-titulo);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--marrom-cacau);        /* mais escuro = mais contraste */
+    white-space: nowrap;
+}
+.cabecalho__logo span {
+    color: var(--mel-escuro);
+}
+
+/* Menu de navegação em Flexbox */
+.nav__lista {
+    display: flex;
+    flex-wrap: nowrap;                 /* links sempre em uma única linha */
+    gap: 0.35rem;
+}
+.nav__link {
+    font-size: 0.8rem;
+    font-weight: 600;                  /* peso maior = mais presença */
+    color: var(--marrom-cacau);
+    padding: 0.45rem 0.7rem;
+    border-radius: 999px;
+    white-space: nowrap;               /* rótulos não quebram dentro do link */
+    transition: var(--transicao);
+}
+/* (hover com fundo rosa em @media (hover: hover) — ver seção 12) */
+
+/* ---------- 6. HERO (Flexbox centralizado) ---------- */
+/* Garante que os glows decorativos do hero fiquem contidos no próprio
+   bloco (overflow: hidden) e nunca gerem barra de rolagem lateral */
+.hero {
+    position: relative;                /* base para as "luzes" decorativas */
+    overflow: hidden;
+    contain: paint;                    /* recorta pintura dentro do bloco */
+    background: linear-gradient(160deg,
+        var(--rosa-pastel) 0%,
+        var(--rosa-claro) 55%,
+        var(--creme) 100%);
+    padding: 3.5rem 1.25rem 4rem;
+    text-align: center;
+    /* profundidade interna: luz suave no topo + meia-sombra fina na base */
+    box-shadow:
+        inset 0 2px 10px rgba(255, 253, 249, 0.55),
+        inset 0 -3px 10px rgba(111, 78, 55, 0.05);
+}
+
+/* Textura sutil: glows radiais (dourado e rosa) quebram o flat */
+.hero::before,
+.hero::after {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    border-radius: 50%;
+    pointer-events: none;
+}
+.hero::before {
+    top: -18%;
+    right: -12%;
+    width: 60vw;
+    max-width: 480px;
+    aspect-ratio: 1;
+    background: radial-gradient(circle,
+        rgba(244, 208, 104, 0.20) 0%,
+        transparent 60%);
+}
+.hero::after {
+    bottom: -24%;
+    left: -14%;
+    width: 55vw;
+    max-width: 440px;
+    aspect-ratio: 1;
+    background: radial-gradient(circle,
+        rgba(247, 202, 208, 0.50) 0%,
+        transparent 62%);
+}
+
+/* Coluna flex para empilhar selo, título, texto e CTA */
+.hero__conteudo {
+    position: relative;
+    z-index: 1;                        /* acima dos glows decorativos */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+}
+
+/* Selo: vidro fosco com sombra de contato + fio de luz superior */
+.hero__selo {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--marrom-cacau);
+    background: rgba(255, 253, 249, 0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 0.4rem 1.1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(247, 202, 208, 0.7);
+    box-shadow: var(--sombra-suave),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.hero__titulo {
+    font-family: var(--fonte-titulo);
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: 0.02em;            /* respiro tipográfico premium */
+    color: var(--marrom-escuro);
+    text-shadow: 0 2px 14px rgba(255, 253, 249, 0.85); /* relevo creme */
+}
+.hero__destaque {
+    color: var(--mel-escuro);          /* destaca o nome "Ana" em dourado */
+}
+
+.hero__descricao {
+    max-width: 34rem;
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: #55453A;                    /* contraste melhorado, sem perder suavidade */
+}
+
+/* ---------- 7. SEÇÃO SOBRE ---------- */
+/* Fundo com degrade vertical sutil (textura sem imagens) */
+.sobre {
+    background: linear-gradient(180deg, var(--rosa-claro) 0%, #FBEFF1 100%);
+    padding: 3.5rem 0;
+}
+
+/* Flexbox: empilha texto e citação no mobile, lado a lado no tablet+ */
+.sobre__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 46rem;
+    margin: 0 auto;
+}
+
+.sobre__texto {
+    font-size: 0.95rem;
+    text-align: center;
+    color: #55453A;
+}
+
+/* Citação da Ana — sombra de "papel" com leve offset:
+   contato próximo + halo rosado difuso, borda dourada bem fina
+   (1px solid rgba(217, 166, 59, 0.35)), raio generoso e padding
+   maior. No hover, o papel "assenta" na horizontal e a sombra
+   aprofunda para o nível máximo (--sombra-hover). */
+.sobre__cita {
+    font-family: var(--fonte-titulo);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--marrom-cacau);
+    text-align: center;
+    background: var(--creme);
+    padding: 1.6rem 1.7rem;            /* padding maior (papel generoso) */
+    border-radius: calc(var(--raio) + 6px); /* 28px — mais delicado */
+    border: 1px solid rgba(217, 166, 59, 0.35); /* fio dourado bem fino */
+    border-left: 4px solid var(--mel);
+    box-shadow: var(--sombra-papel);
+    transform: rotate(-0.6deg);
+    transition: var(--transicao);
+}
+/* (hover em @media (hover: hover) — ver seção 12) */
+.sobre__cita cite {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+    font-style: normal;
+    font-family: var(--fonte-texto);
+    color: var(--mel-escuro);
+}
+
+/* ---------- 8. CARDÁPIO (CSS Grid) ---------- */
+/* Textura sutil: glow dourado muito leve no topo da seção */
+.cardapio {
+    position: relative;
+    padding: 3.5rem 0;
+    background:
+        radial-gradient(circle at 50% -10%, rgba(244, 208, 104, 0.10) 0%, transparent 55%),
+        var(--creme);
+}
+
+/* Grid responsivo nativo: 1 coluna (mobile) → 2 (tablet) → 4 (desktop) */
+.cardapio__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+/* Card de produto — acabamento premium:
+   - raio 22px (delicadeza boutique)
+   - borda translúcida rosada: 1px solid rgba(247, 202, 208, 0.5)
+   - SOMBRA MÉDIA EM CAMADAS no repouso (4px + 8px de difusão)
+   - hover: translateY(-8px) + scale(1.02) + sombra elevada */
+.card {
+    display: flex;
+    flex-direction: column;            /* imagem, texto e botão empilhados */
+    background: #ffffff;
+    border: 1px solid rgba(247, 202, 208, 0.5);
+    border-radius: var(--raio);
+    overflow: hidden;
+    box-shadow: var(--sombra-media);
+    transition: var(--transicao);      /* cubic-bezier(0.25, 0.46, 0.45, 0.94) */
+}
+/* (hover com elevação e zoom em @media (hover: hover) — ver seção 12) */
+
+/* "Foto" ilustrativa do doce — agora com FOTOS REAIS dos assets.
+   Sombra INTERNA mantida na base (profundidade) + fio de luz superior
+   (inset). Cada variante carrega sua foto com fallback em gradiente.
+   Zoom no hover é definido em @media (hover: hover) — ver seção 12. */
+.card__imagem {
+    height: 150px;
+    flex-shrink: 0;
+    box-shadow:
+        inset 0 -32px 48px -16px rgba(74, 50, 38, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+/* (zoom da foto em @media (hover: hover) — ver seção 12) */
+.card__imagem--ninho {
+    background-color: #F095A8;         /* fallback enquanto carrega */
+    background-image: url('assets/bolo_pote_morango_ninho.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.card__imagem--brigadeiro {
+    background-color: #6F4E37;
+    background-image: url('assets/brigadeiro_gourmet.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.card__imagem--brownie {
+    background-color: #5D4037;
+    background-image: url('assets/copo_felicidade_brownie.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.card__imagem--limao {
+    background-color: #E6B93E;
+    background-image: url('assets/torta_limao.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Conteúdo textual do card — centralizado para um visual aconchegante */
+.card__conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;               /* centraliza título, descrição e preço */
+    text-align: center;
+    gap: 0.6rem;
+    padding: 1.25rem;
+    flex: 1;                           /* botão alinhado na base do card */
+}
+.card__titulo {
+    font-family: var(--fonte-titulo);
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--marrom-cacau);
+}
+.card__descricao {
+    font-size: 0.85rem;
+    color: var(--texto-suave);         /* contraste melhorado */
+    flex: 1;
+}
+
+/* Preço em destaque — brilho dourado discreto */
+.card__preco {
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--marrom-escuro);
+    text-shadow: 0 1px 0 rgba(244, 208, 104, 0.25);
+}
+.card__preco small {
+    font-size: 0.8rem;
+    color: var(--mel-escuro);
+}
+.card__unidade {
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--texto-suave);
+}
+
+/* ---------- 9. SEÇÃO CONTATO (Flexbox/Grid) ---------- */
+.contato {
+    padding: 3.5rem 0;
+    background: linear-gradient(180deg, #FBEFF1 0%, var(--rosa-claro) 100%);
+}
+
+.contato__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+/* Itens de contato: MESMA LINGUAGEM de sombra dos cards
+   (média em camadas) + borda translúcida */
+.contato__item {
+    background: #ffffff;
+    border: 1px solid rgba(247, 202, 208, 0.55);
+    border-radius: var(--raio);
+    padding: 1.25rem;
+    text-align: center;
+    box-shadow: var(--sombra-media);
+    transition: var(--transicao);
+}
+/* (hover em @media (hover: hover) — ver seção 12) */
+.contato__item h3 {
+    font-family: var(--fonte-titulo);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--marrom-cacau);
+    margin-bottom: 0.3rem;
+}
+.contato__item p {
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+}
+.contato__link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--mel-escuro);
+    transition: var(--transicao);
+}
+/* (hover em @media (hover: hover) — ver seção 12) */
+
+/* ---------- 10. RODAPÉ (Flexbox) ---------- */
+/* Profundidade: degradê marrom + SOMBRA SUPERIOR sutil separando
+   o rodapé do conteúdo + filete dourado interno no topo */
+.rodape {
+    background: linear-gradient(180deg, var(--marrom-escuro) 0%, #3D2A20 100%);
+    color: var(--creme);
+    text-align: center;
+    padding: 2.25rem 0;
+    box-shadow:
+        0 -8px 24px -8px rgba(74, 50, 38, 0.40), /* sombra para cima (separação) */
+        inset 0 1px 0 rgba(244, 208, 104, 0.14);  /* filete dourado no topo */
+}
+
+.rodape__marca {
+    font-family: var(--fonte-titulo);
+    font-size: 1.1rem;
+    color: var(--rosa-pastel);
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 10px rgba(247, 202, 208, 0.25); /* brilho rosado sutil */
+}
+
+/* Flexbox: links de contato em linha centralizada */
+.rodape__links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+.rodape__links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--mel);
+    transition: var(--transicao);
+}
+/* (hover em @media (hover: hover) — ver seção 12) */
+
+.rodape__nota {
+    font-size: 0.72rem;
+    opacity: 0.88;                     /* contraste levemente melhorado */
+    max-width: 46rem;
+    margin: 0.3rem auto;
+}
+
+/* ============================================================================
+   11. RESPONSIVIDADE — MEDIA QUERIES (mobile-first: apenas min-width)
+   ============================================================================ */
+
+/* ---------- Smartphones maiores / 480px ---------- */
+@media (min-width: 480px) {
+    .hero__titulo       { font-size: 2.9rem; }
+    .cardapio__grid     { grid-template-columns: repeat(2, 1fr); } /* 2 colunas */
+    .btn--whatsapp      { width: auto; }
+}
+
+/* ---------- Tablets / 768px ---------- */
+@media (min-width: 768px) {
+    .cabecalho__logo    { font-size: 1.5rem; }
+    .nav__link          { font-size: 0.9rem; }
+
+    .hero               { padding: 5rem 1.25rem; }
+    .hero__titulo       { font-size: 3.4rem; }
+    .hero__descricao    { font-size: 1.05rem; }
+
+    .sobre__grid        { flex-direction: row; align-items: stretch; }
+    .sobre__texto       { flex: 1.4; align-self: center; }
+    .sobre__cita        { flex: 1; align-self: center; }
+
+    .contato__grid      { grid-template-columns: repeat(3, 1fr); } /* 3 colunas (3 itens) */
+}
+
+/* ---------- Desktops / 1024px ---------- */
+@media (min-width: 1024px) {
+    .cardapio__grid     { grid-template-columns: repeat(4, 1fr); } /* 4 colunas */
+    .contato__grid      { grid-template-columns: repeat(3, 1fr); }
+    .titulo-secao       { font-size: 2.1rem; }
+}
+
+/* ============================================================================
+   12. MICRO-INTERAÇÕES — SOMENTE EM DISPOSITIVOS COM HOVER REAL
+   ----------------------------------------------------------------------------
+   Correção do link "Contato" com fundo rosa "preso":
+   Em telas de toque o navegador simula :hover após o toque e ele fica
+   ativo até o próximo toque em outro ponto. Restringir os estilos de
+   hover a `(hover: hover) and (pointer: fine)` faz o fundo rosa existir
+   apenas para mouse/teclado (e no :focus-visible via teclado), nunca
+   "preso" no celular.
+   ============================================================================ */
+@media (hover: hover) and (pointer: fine) {
+
+    /* Links do menu: fundo rosa translúcido + sombra colorida */
+    .nav__link:hover {
+        background: rgba(247, 202, 208, 0.55);
+        color: var(--marrom-escuro);
+        box-shadow: 0 2px 10px rgba(247, 202, 208, 0.45);
+    }
+
+    /* Botão dourado/mel: glow cresce + elevação */
+    .btn--mel:hover {
+        background: linear-gradient(180deg, #F3D37C 0%, var(--mel-escuro) 100%);
+        color: var(--marrom-escuro);
+        transform: translateY(-3px);
+        box-shadow: var(--sombra-botao-mel-hover);
+    }
+
+    /* Botão WhatsApp: sombra verde intensifica + elevação */
+    .btn--whatsapp:hover {
+        background: linear-gradient(180deg, #2CC96B 0%, var(--whatsapp-escuro) 100%);
+        transform: translateY(-2px);
+        box-shadow: var(--sombra-botao-whatsapp-hover);
+    }
+
+    /* Card: elevação premium + escala sutil + borda "aquecida" */
+    .card:hover {
+        transform: translateY(-8px) scale(1.02);
+        border-color: rgba(244, 208, 104, 0.55);
+        box-shadow: var(--sombra-elevada);
+    }
+
+    /* Foto do card: zoom suave (contido pelo overflow do card) */
+    .card:hover .card__imagem {
+        transform: scale(1.06);
+    }
+
+    /* Citação: o "papel" assenta na horizontal e flutua */
+    .sobre__cita:hover {
+        transform: rotate(0deg) scale(1.02);
+        box-shadow: var(--sombra-hover);
+    }
+
+    /* Itens de contato: elevação como os cards */
+    .contato__item:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--sombra-elevada);
+    }
+
+    /* Link interno de contato: brilho verde sutil */
+    .contato__link:hover {
+        color: var(--whatsapp-escuro);
+        transform: translateY(-2px);
+        text-shadow: 0 2px 8px rgba(37, 211, 102, 0.30);
+    }
+
+    /* Links do rodapé: halo dourado-rosado */
+    .rodape__links a:hover {
+        color: var(--rosa-pastel);
+        transform: translateY(-2px);
+        text-shadow: 0 2px 10px rgba(247, 202, 208, 0.40);
+    }
+}
+
+/* ============================================================================
+   13. MENU MOBILE — ADAPTAÇÃO PARA TELAS PEQUENAS (max-width)
+   ----------------------------------------------------------------------------
+   Sem hamburger e sem quebra de linha: em telas estreitas o logo e os
+   links ficam menores e com menos padding, cabendo tudo em uma única
+   linha a partir de 320px. O header mantém blur e sombra suave.
+   ============================================================================ */
+
+/* ---------- Telas até 520px: compactação intermediária ---------- */
+@media (max-width: 520px) {
+    .cabecalho__container {
+        gap: 0.5rem;
+        padding: 0.7rem 0.9rem;
+    }
+    .cabecalho__logo {
+        font-size: 0.95rem;            /* logo menor para abrir espaço */
+    }
+    .nav__lista {
+        gap: 0.2rem;
+    }
+    .nav__link {
+        font-size: 0.64rem;            /* links mais compactos */
+        padding: 0.35rem 0.45rem;
+    }
+}
+
+/* ---------- Telas até 360px (ex.: 320px): compactação máxima ---------- */
+@media (max-width: 360px) {
+    .cabecalho__container {
+        gap: 0.35rem;
+        padding: 0.65rem 0.75rem;
+    }
+    .cabecalho__logo {
+        font-size: 0.85rem;
+    }
+    .nav__lista {
+        gap: 0.1rem;
+    }
+    .nav__link {
+        font-size: 0.58rem;            /* legível e funcional em 320px */
+        padding: 0.3rem 0.35rem;
+    }
+}

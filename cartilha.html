@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Guia Prático de Inclusão Digital — Doceria da Ana</title>
+<style>
+    /* ============================================================
+       CARTILHA DE TREINAMENTO — DOCERIA DA ANA
+       Identidade visual: Rosa Pastel, Marrom Cacau e Toques Dourados
+       Formato A4 para impressão / conversão em PDF
+       ============================================================ */
+
+    @page {
+        size: A4;
+        margin: 16mm 14mm 18mm 14mm;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Segoe UI', 'Arial', sans-serif;
+        font-size: 10.5pt;
+        line-height: 1.6;
+        color: #4A3226;
+        background: #FFFDF9;
+    }
+
+    /* ---------- Capa ---------- */
+    .capa {
+        height: 248mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 20mm;
+        border: 3mm solid #F7CAD0;
+        outline: 0.6mm solid #F4D068;
+        outline-offset: 3mm;
+        background:
+            radial-gradient(circle at 50% 12%, rgba(244, 208, 104, 0.18) 0%, transparent 45%),
+            #FFFDF9;
+        page-break-after: always;
+    }
+    .capa .selo {
+        display: inline-block;
+        background: #F7CAD0;
+        color: #4A3226;
+        border-radius: 999px;
+        padding: 2mm 8mm;
+        font-weight: 600;
+        font-size: 9pt;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 12mm;
+    }
+    .capa h1 {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 21pt;
+        line-height: 1.3;
+        color: #6F4E37;
+        margin-bottom: 8mm;
+    }
+    .capa h2 {
+        font-size: 12pt;
+        font-weight: 400;
+        color: #6F4E37;
+        max-width: 150mm;
+        margin: 0 auto 12mm;
+    }
+    .capa .assina {
+        font-size: 10pt;
+        color: #6F4E37;
+    }
+    .capa .rodape-capa {
+        margin-top: 16mm;
+        font-size: 8.5pt;
+        color: #8A6F5C;
+        border-top: 0.4mm solid #F4D068;
+        padding-top: 4mm;
+    }
+
+    /* ---------- Páginas ---------- */
+    .pagina {
+        page-break-after: always;
+    }
+
+    h1.capitulo {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 17pt;
+        color: #6F4E37;
+        margin: 0 0 2mm;
+    }
+    .capitulo-numero {
+        display: inline-block;
+        background: #F4D068;
+        color: #4A3226;
+        font-size: 9pt;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border-radius: 999px;
+        padding: 1mm 6mm;
+        margin-bottom: 4mm;
+    }
+    h2 {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 13pt;
+        color: #6F4E37;
+        margin: 7mm 0 3mm;
+    }
+    h3 {
+        font-size: 11pt;
+        color: #6F4E37;
+        margin: 5mm 0 2mm;
+    }
+    p { margin: 0 0 3mm; }
+    strong { color: #6F4E37; }
+
+    ul, ol { margin: 0 0 3mm 7mm; }
+    li { margin-bottom: 1.5mm; }
+
+    /* ---------- Caixas de destaque ---------- */
+    .dica {
+        background: #FFF6E0;
+        border: 0.5mm solid #F4D068;
+        border-left: 3mm solid #F4D068;
+        border-radius: 2.5mm;
+        padding: 4mm 5mm;
+        margin: 4mm 0;
+        page-break-inside: avoid;
+    }
+    .dica .rotulo {
+        font-weight: 700;
+        color: #B8860B;
+        display: block;
+        margin-bottom: 1mm;
+    }
+    .alerta {
+        background: #FDE7EA;
+        border: 0.5mm solid #F7CAD0;
+        border-left: 3mm solid #E07A8F;
+        border-radius: 2.5mm;
+        padding: 4mm 5mm;
+        margin: 4mm 0;
+        page-break-inside: avoid;
+    }
+    .alerta .rotulo {
+        font-weight: 700;
+        color: #B85C6E;
+        display: block;
+        margin-bottom: 1mm;
+    }
+
+    /* ---------- Caixas de "copiar e colar" ---------- */
+    .copiar {
+        background: #F5F0EB;
+        border: 0.4mm dashed #6F4E37;
+        border-radius: 2.5mm;
+        padding: 3.5mm 5mm;
+        margin: 3mm 0;
+        font-style: italic;
+        page-break-inside: avoid;
+    }
+    .copiar .rotulo {
+        font-style: normal;
+        font-weight: 700;
+        color: #6F4E37;
+        display: block;
+        margin-bottom: 1mm;
+    }
+
+    /* ---------- Passo a passo ---------- */
+    .passos li {
+        margin-bottom: 2mm;
+        padding-left: 1mm;
+    }
+
+    /* ---------- Sumário ---------- */
+    .sumario h1 {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 16pt;
+        color: #6F4E37;
+        margin-bottom: 6mm;
+    }
+    .sumario ol { list-style: none; margin: 0; }
+    .sumario li {
+        padding: 2.5mm 0;
+        border-bottom: 0.3mm dotted #F7CAD0;
+        font-weight: 600;
+        color: #6F4E37;
+    }
+    .sumario li span { font-weight: 400; color: #8A6F5C; }
+
+    /* ---------- Checklist final ---------- */
+    .checklist li { list-style: none; margin-bottom: 2mm; }
+    .checklist li::before { content: "✅ "; }
+
+    .rodape-pagina {
+        margin-top: 8mm;
+        padding-top: 3mm;
+        border-top: 0.3mm solid #F7CAD0;
+        font-size: 8pt;
+        color: #8A6F5C;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+
+<!-- ==================== CAPA ==================== -->
+<section class="capa">
+    <span class="selo">📚 Projeto de Extensão Universitária</span>
+    <h1>Guia Prático de Inclusão Digital:<br>Como Decolar as Vendas da Doceria da Ana</h1>
+    <h2>Passo a Passo para Dominar o WhatsApp Business e o Canva com Segurança e Profissionalismo</h2>
+    <p class="assina">💖 Feito com carinho para a Ana<br>Doceria da Ana · Ubiratã-PR</p>
+    <p class="rodape-capa">Desenvolvido como projeto de extensão universitária — CST em Análise e Desenvolvimento de Sistemas (UNINTER).</p>
+</section>
+
+<!-- ==================== SUMÁRIO ==================== -->
+<section class="pagina sumario">
+    <h1>📖 Nesta cartilha você vai encontrar:</h1>
+    <ol>
+        <li>Introdução <span>— O seu negócio no mundo digital</span></li>
+        <li>Capítulo 1 <span>— Segurança Digital em Primeiro Lugar (A sua Doceria Protegida)</span></li>
+        <li>Capítulo 2 <span>— Atendimento Show de Bola no WhatsApp Business</span></li>
+        <li>Capítulo 3 <span>— Design Descomplicado com o Canva</span></li>
+        <li>Conclusão <span>— Próximos passos e incentivo final</span></li>
+    </ol>
+
+    <h2 style="margin-top:12mm">Como usar este guia</h2>
+    <p>Pense nesta cartilha como uma amiga de confiança sentada ao seu lado, explicando tudo com calma. Não precisa ler tudo de uma vez: você pode fazer <strong>um capítulo por dia</strong>, como quem cozinha uma receita nova — sem pressa, aproveitando cada etapa. Quando terminar, você terá a doceria inteirinha funcionando no mundo digital, do seu jeito e no seu ritmo.</p>
+
+    <p style="margin-top:8mm">No caminho, você vai encontrar duas ajudantes especiais:</p>
+    <div class="dica"><span class="rotulo">🥇 Dica de Ouro</span>Um segredinho para você brilhar ainda mais — daquelas dicas que fazem diferença no dia a dia.</div>
+    <div class="alerta"><span class="rotulo">🚨 Alerta de Segurança</span>Um cuidado importante para proteger você e a sua doceria de golpes e armadilhas.</div>
+
+    <p class="rodape-pagina">Cartilha de Treinamento — Doceria da Ana · Ubiratã-PR</p>
+</section>
+
+<!-- ==================== INTRODUÇÃO ==================== -->
+<section class="pagina">
+    <h1 class="capitulo">Introdução</h1>
+    <span class="capitulo-numero">Boas-vindas</span>
+
+    <h2>🌸 O seu negócio no mundo digital</h2>
+
+    <p>Querida Ana, seja muito bem-vinda! 💖</p>
+
+    <p>Se você está lendo esta cartilha, é porque o seu talento merece chegar a muito mais gente. Os seus bolos de pote, brigadeiros e tortas já fazem sucesso de boca em boca — imagina quando a cidade inteira conseguir encontrar você com um toque na tela do celular?</p>
+
+    <p>Esta cartilha foi feita para uma missão muito simples: <strong>dar autonomia para você administrar a presença digital da Doceria da Ana</strong>. Aqui você vai aprender, passo a passo e sem termos complicados, a usar duas ferramentas que serão suas grandes parceiras de trabalho:</p>
+
+    <ul>
+        <li>📱 <strong>WhatsApp Business</strong> — o seu atendimento organizado, com catálogo de produtos, mensagens automáticas e um perfil comercial completo; e</li>
+        <li>🎨 <strong>Canva</strong> — a sua oficina de arte digital, para criar anúncios e status bonitos mesmo sem saber desenhar.</li>
+    </ul>
+
+    <p>Você não precisa ser "expert em tecnologia" para isso. A tecnologia foi feita para simplificar a vida — o que ela precisa é de gente como você, com boa vontade e uma ajudinha no caminho. E é exatamente para isso que esta cartilha existe. 💪</p>
+
+    <div class="dica">
+        <span class="rotulo">🥇 Dica de Ouro</span>
+        Separe uns 30 minutinhos por dia para praticar. Leia um capítulo e faça logo na sequência no seu celular. Aprender fazendo é muito mais fácil — e muito mais gostoso, como provar a massa do bolo enquanto se cozinha! 😄
+    </div>
+
+    <p class="rodape-pagina">Introdução — O seu negócio no mundo digital</p>
+</section>
+
+<!-- ==================== CAPÍTULO 1 ==================== -->
+<section class="pagina">
+    <h1 class="capitulo">Capítulo 1</h1>
+    <span class="capitulo-numero">🔐 Segurança Digital em Primeiro Lugar</span>
+    <h1 class="capitulo" style="font-size:14pt">A Sua Doceria Protegida</h1>
+
+    <h2>1.1 Por que a segurança é tão importante? 🛡️</h2>
+    <p>Imagine que o WhatsApp da doceria é a <strong>chave da sua loja</strong>. É por ele que passam os pedidos, a lista de clientes, os combinados de entrega e os pagamentos via Pix. Se essa chave cair na mão errada, uma pessoa mal-intencionada pode se passar por você, pedir dinheiro aos seus clientes e manchar a confiança que você construiu com tanto carinho.</p>
+    <p>Mas calma: proteger essa chave é mais simples do que parece. Você só precisa de <strong>três cuidados básicos</strong>: uma senha extra de segurança, um e-mail de recuperação e muita atenção a mensagens estranhas. Vamos fazer isso juntas agora? 💪</p>
+
+    <h2>1.2 Passo a passo: ativando a "Confirmação em Duas Etapas" 🔑</h2>
+    <p>A Confirmação em Duas Etapas é como colocar uma <strong>segunda trava</strong> na porta da doceria: mesmo que alguém descubra seu número e tente usar o seu WhatsApp em outro celular, sem essa senha secreta ele não consegue entrar.</p>
+
+    <ol class="passos">
+        <li>Abra o <strong>WhatsApp Business</strong> no seu celular.</li>
+        <li>Toque no ícone de <strong>três pontinhos (⋮)</strong> no canto superior direito da tela.</li>
+        <li>Toque em <strong>"Configurações"</strong> (em alguns aparelhos aparece "Ajustes").</li>
+        <li>Toque em <strong>"Conta"</strong>.</li>
+        <li>Toque em <strong>"Confirmação em duas etapas"</strong>.</li>
+        <li>Toque em <strong>"Ativar"</strong>.</li>
+        <li>Crie um <strong>PIN de 6 números</strong> — uma senha só sua, que ninguém adivinhe.</li>
+        <li>Digite o mesmo PIN <strong>novamente</strong> para confirmar.</li>
+        <li>Informe um <strong>e-mail de recuperação</strong> (importante caso você esqueça o PIN um dia) e confirme tocando em "Avançar".</li>
+        <li>Pronto! ✅ Sua conta agora está protegida com a trava extra.</li>
+    </ol>
+
+    <div class="dica">
+        <span class="rotulo">🥇 Dica de Ouro</span>
+        Escolha um PIN fácil para <strong>você</strong> lembrar, mas difícil para os outros adivinharem. Evite datas de aniversário, sequências como 123456 ou números repetidos (111111). E sabe o que é uma ótima tecnologia? Papel e caneta! Anote o PIN num papelzinho e guarde num lugar seguro, longe do celular.
+    </div>
+
+    <h2>1.3 Como se proteger dos golpes mais comuns 🚫</h2>
+    <p>Infelizmente, existem pessoas que tentam enganar doceiras trabalhadoras por aí. Mas você vai ficar esperta: conheça os dois golpes mais comuns e como se defender deles.</p>
+
+    <h3>Golpe 1: a clonagem do WhatsApp 🕵️</h3>
+    <p>Um "cliente" (que na verdade é um golpista) envia mensagens e, em algum momento, pede o <strong>código de 6 números</strong> que chega por SMS no seu celular. A desculpa é sempre convincente: "toquei no botão errado", "é uma confirmação do banco"... <strong>Nunca, em hipótese alguma, informe esse código a ninguém.</strong> Esse código é a chave da sua loja!</p>
+
+    <h3>Golpe 2: links falsos de "suporte do WhatsApp" 🎣</h3>
+    <p>Você recebe uma mensagem dizendo que "sua conta será bloqueada" e pedindo para clicar num link e confirmar dados. O WhatsApp <strong>nunca</strong> pede senha, código ou dados por link. Se chegar algo assim, apague a mensagem e não clique em nada.</p>
+
+    <div class="alerta">
+        <span class="rotulo">🚨 Alerta de Segurança</span>
+        O golpe mais comum com docerias é assim: a pessoa se passa por cliente e diz — "Ana, meu celular estragou e vou trocar, o WhatsApp me pediu um código, você pode me falar o seu para eu confirmar?" <strong>NUNCA informe o seu código!</strong> Quem pede o seu código de confirmação quer roubar a sua conta. Se alguém pedir, encerre a conversa na hora.
+    </div>
+
+    <h3>Mais cuidados simples que valem ouro 👑</h3>
+    <ul>
+        <li>🔒 Nunca compartilhe o seu código de 6 dígitos com ninguém — nem com "funcionários do WhatsApp".</li>
+        <li>🎁 Desconfie de "prêmios" e promoções milagrosas que pedem clique em links.</li>
+        <li>🖱️ Não clique em links suspeitos. Se já clicou, não digite seus dados em nenhuma tela.</li>
+        <li>📲 Mantenha o celular com as atualizações em dia (aquelas notificações de "atualizar aplicativo" ajudam a proteger você).</li>
+        <li>🏦 Se um dia perder o acesso à conta, avise seus clientes por outro meio e procure o suporte oficial do WhatsApp Business dentro do aplicativo.</li>
+    </ul>
+
+    <div class="dica">
+        <span class="rotulo">🥇 Dica de Ouro</span>
+        Converse com seus clientes sobre isso com carinho: "Aqui é a Ana! Lembrando que nunca vou pedir código nem senha por mensagem. Combinado?" Isso protege você <strong>e</strong> cria uma relação de confiança ainda maior com quem compra de você.
+    </div>
+
+    <p class="rodape-pagina">Capítulo 1 — Segurança Digital em Primeiro Lugar</p>
+</section>
+
+<!-- ==================== CAPÍTULO 2 (parte 1) ==================== -->
+<section class="pagina">
+    <h1 class="capitulo">Capítulo 2</h1>
+    <span class="capitulo-numero">📱 Atendimento Show de Bola</span>
+    <h1 class="capitulo" style="font-size:14pt">WhatsApp Business</h1>
+
+    <p>O WhatsApp Business é o WhatsApp "de uniforme": tem cara de negócio, mostra seu endereço e horário, organiza os pedidos e até responde sozinho quando você está ocupada. Vamos vestir o uniforme da Doceria da Ana? 🥰</p>
+
+    <h2>2.1 Montando o seu Perfil Comercial 🏪</h2>
+    <p>O Perfil Comercial é a <strong>placa da sua loja digital</strong>. É a primeira coisa que o cliente vê quando abre a conversa — e é onde ele confere se você é confiável. Deixe tudo completinho:</p>
+
+    <ol class="passos">
+        <li>Abra o WhatsApp Business e toque nos <strong>três pontinhos (⋮)</strong>.</li>
+        <li>Toque em <strong>"Configurações"</strong>.</li>
+        <li>Toque em <strong>"Ferramentas comerciais"</strong> e depois em <strong>"Perfil comercial"</strong>.</li>
+        <li>Preencha cada campo com os dados da doceria:
+            <ul style="margin-top:2mm">
+                <li><strong>Nome:</strong> Doceria da Ana</li>
+                <li><strong>Categoria:</strong> Alimentos e Bebidas → Doçaria / Confeitaria</li>
+                <li><strong>Descrição:</strong> "Doces artesanais feitos com amor e ingredientes de verdade. Bolo de pote, brigadeiro gourmet, copo da felicidade e torta de limão. Peça pelo WhatsApp!"</li>
+                <li><strong>Endereço:</strong> Rua Maria das Graças Molina, 1563 — Centro, Ubiratã-PR</li>
+                <li><strong>Horário de funcionamento:</strong> Segunda a sábado, das 9h às 19h</li>
+                <li><strong>Foto de perfil:</strong> use o logo da doceria ou uma foto linda de um doce com boa luz</li>
+            </ul>
+        </li>
+        <li>Toque em <strong>"Salvar"</strong> ✅</li>
+    </ol>
+
+    <div class="dica">
+        <span class="rotulo">🥇 Dica de Ouro</span>
+        O WhatsApp mostra o seu horário de funcionamento para o cliente <strong>antes mesmo</strong> de ele escrever. Cliente que já chega sabendo que você está aberta e atendendo se sente seguro — e compra com mais confiança!
+    </div>
+
+    <h2>2.2 Automações: respondendo até quando você está ocupada 🤖</h2>
+    <p>Automação é um nome bonito para algo simples: mensagens prontas que o WhatsApp envia sozinho quando o cliente chega ou quando você está fora do horário. É como o aviso que você colocaria na porta da doceria — só que dentro do celular. 💌</p>
+
+    <p><strong>Como ativar:</strong> Configurações → Ferramentas comerciais → <strong>"Mensagem de saudação"</strong> e <strong>"Mensagem de ausência"</strong>. Ative a chavinha e cole os textos abaixo.</p>
+
+    <div class="copiar">
+        <span class="rotulo">💬 Mensagem de Saudação (copie e cole)</span>
+        Olá! 💖 Bem-vindo(a) à Doceria da Ana! Aqui você encontra doces artesanais feitos com muito carinho. Para fazer o seu pedido, é só me contar qual doce você quer. Se preferir, olhe o nosso catálogo no menu abaixo. Fico no aguardo! 😊
+    </div>
+
+    <div class="copiar">
+        <span class="rotulo">💬 Mensagem de Ausência (copie e cole)</span>
+        Olá! 🌸 A Doceria da Ana está fora do horário de atendimento agora. Atendemos de segunda a sábado, das 9h às 19h. Fique à vontade para deixar o seu pedido aqui — eu respondo assim que abrir! 💕
+    </div>
+
+    <div class="dica">
+        <span class="rotulo">🥇 Dica de Ouro</span>
+        A mensagem de saudação é o seu "sorriso digital": ele recebe o cliente com o mesmo carinho da sua loja física. Capriche no tom e, se possível, coloque um emoji. Cliente bem recebido volta sempre!
+    </div>
+
+    <p class="rodape-pagina">Capítulo 2 — Atendimento Show de Bola no WhatsApp Business</p>
+</section>
+
+<!-- ==================== CAPÍTULO 2 (parte 2) ==================== -->
+<section class="pagina">
+    <h2>2.3 Respostas Rápidas: os seus "post-its" mágicos 🗒️✨</h2>
+    <p>Você sabe como são aqueles post-its colados no balcão com recadinhos prontos? As Respostas Rápidas funcionam assim: você digita um <strong>atalho</strong> (ex.: <strong>/pix</strong>) e o WhatsApp completa a mensagem inteira sozinho. Você ganha tempo e responde todo mundo com capricho, mesmo no dia mais corrido. 🏃‍♀️💨</p>
+
+    <p><strong>Como cadastrar:</strong> Configurações → Ferramentas comerciais → <strong>"Respostas rápidas"</strong> → toque no <strong>"+"</strong> → digite o atalho, cole a mensagem e salve.</p>
+
+    <h3>Cadastre estes três atalhos para começar:</h3>
+
+    <div class="copiar">
+        <span class="rotulo">💬 Atalho /pix</span>
+        Para o pagamento via Pix, a chave é [coloque aqui o seu CPF ou telefone]. Assim que o pagamento for confirmado, eu já sigo com o preparo do seu pedido! 💛
+    </div>
+
+    <div class="copiar">
+        <span class="rotulo">💬 Atalho /obrigado</span>
+        Nós que agradecemos a preferência! 💖 Foi um prazer adoçar o seu dia. Volte sempre, combinado? 🍰
+    </div>
+
+    <div class="copiar">
+        <span class="rotulo">💬 Atalho /entrega</span>
+        Fazemos entregas em Ubiratã e região! 🚗 A taxa é calculada conforme a distância e o nosso horário de entrega é de segunda a sábado, das 9h às 19h. Me confirma o seu endereço, por favor?
+    </div>
+
+    <div class="dica">
+        <span class="rotulo">🥇 Dica de Ouro</span>
+        Comece com 3 atalhos e vá criando outros conforme as perguntas se repetirem (por exemplo: /preco, /encomenda, /aniversario). Quanto mais atalhos você cadastra, mais rápido atende — e atendimento rápido é meio caminho andado para a venda!
+    </div>
+
+    <h2>2.4 Catálogo: a sua vitrine dentro do WhatsApp 🍰🛍️</h2>
+    <p>O Catálogo é como organizar os doces na vitrine da loja: cada produto com foto bonita, nome e preço, para o cliente escolher sem precisar perguntar. E o melhor: o pedido já chega certinho para você. 😍</p>
+
+    <ol class="passos">
+        <li>Vá em <strong>Configurações</strong> → <strong>Ferramentas comerciais</strong> → <strong>"Catálogo"</strong>.</li>
+        <li>Toque em <strong>"Adicionar produto"</strong> (ou no sinal de <strong>+</strong>).</li>
+        <li>Adicione uma <strong>foto bonita do doce</strong> (luz natural faz milagres!).</li>
+        <li>Escreva o <strong>nome</strong>, o <strong>preço</strong> e a <strong>descrição</strong>.</li>
+        <li>Toque em <strong>"Salvar"</strong> e repita para os outros doces. ✅</li>
+    </ol>
+
+    <h3>Descrições prontas para o seu cardápio (copie e cole):</h3>
+
+    <div class="copiar">
+        <span class="rotulo">🍓 Bolo de Pote de Ninho com Morango — R$ 12,00</span>
+        Camadas macias de bolo, creme de ninho e morangos fresquinhos. O queridinho da vizinhança, perfeito para matar a vontade de doce a qualquer hora!
+    </div>
+
+    <div class="copiar">
+        <span class="rotulo">🍫 Brigadeiro Gourmet Tradicional — R$ 4,00 a unidade</span>
+        O clássico da casa: chocolate nobre enrolado à mão no ponto perfeito e finalizado com granulado. Do jeitinho que a vó fazia!
+    </div>
+
+    <div class="copiar">
+        <span class="rotulo">🍰 Copo da Felicidade de Brownie — R$ 15,00</span>
+        Brownie fofinho e brigadeiro cremoso em camadas. Felicidade que cabe num copo — impossível comer um só!
+    </div>
+
+    <div class="copiar">
+        <span class="rotulo">🍋 Torta de Limão Individual — R$ 10,00</span>
+        Base crocante, creme de limão-siciliano no ponto e merengue dourado. Leve, equilibrada e irresistível — o final perfeito para o almoço!
+    </div>
+
+    <div class="alerta">
+        <span class="rotulo">🚨 Alerta de Segurança</span>
+        Mantenha o catálogo sempre atualizado: se um doce acabou, tire do catálogo no mesmo dia. Cliente que pede um produto que não existe perde a confiança — e confiança é o ingrediente mais caro da sua receita.
+    </div>
+
+    <div class="dica">
+        <span class="rotulo">🥇 Dica de Ouro</span>
+        Fotografe os doces perto de uma janela, com luz natural, e limpe o fundo antes. Uma foto bonita vende o doce antes mesmo de o cliente provar — é a vitrine mais barata e poderosa que existe!
+    </div>
+
+    <p class="rodape-pagina">Capítulo 2 — Atendimento Show de Bola no WhatsApp Business</p>
+</section>
+
+<!-- ==================== CAPÍTULO 3 ==================== -->
+<section class="pagina">
+    <h1 class="capitulo">Capítulo 3</h1>
+    <span class="capitulo-numero">🎨 Design Descomplicado</span>
+    <h1 class="capitulo" style="font-size:14pt">Com o Canva</h1>
+
+    <h2>3.1 O que é o Canva? 🖌️</h2>
+    <p>Imagine uma <strong>oficina de arte digital</strong> onde você não precisa saber desenhar: lá dentro existem milhares de cartazes, modelos e moldes prontos — é só escolher um, trocar as palavras e pronto. É exatamente isso que o Canva é: uma oficina de artes grátis e fácil de usar, onde você cria anúncios, cardápios e status lindos <strong>arrastando e soltando</strong> elementos na tela. 🖱️✨</p>
+
+    <p>Para a doceria, o Canva resolve quase tudo: status de promoção da semana, post de "hoje tem torta de limão", cartaz de aniversário, cardápio digital... Sem precisar chamar ninguém e sem gastar nada (a versão gratuita já atende a sua necessidade).</p>
+
+    <h2>3.2 Usando os modelos criados para você 🎁</h2>
+    <p>Durante o projeto, foram criados <strong>modelos prontos com a cara da Doceria da Ana</strong> — exatamente como se fossem "carimbos" com as cores e o estilo do seu negócio. Você não precisa criar nada do zero: é só <strong>abrir o modelo, trocar o texto e salvar a imagem</strong>. 🖨️</p>
+
+    <ol class="passos">
+        <li>Abra o link do modelo no Canva (ele abre sozinho no celular ou no computador).</li>
+        <li>Toque no texto e escreva a sua promoção: <em>"Bolo de Pote só R$ 12,00 essa semana!"</em>.</li>
+        <li>Confira se o preço, a data e o WhatsApp estão corretos.</li>
+        <li>Toque em <strong>"Compartilhar"</strong> → <strong>"Baixar"</strong> → escolha <strong>PNG</strong> → pronto! A imagem fica salva no seu celular.</li>
+        <li>Abra o WhatsApp Business → <strong>Status</strong> → envie a imagem. Sua promoção está no ar! 📣</li>
+    </ol>
+
+    <div class="dica">
+        <span class="rotulo">🥇 Dica de Ouro</span>
+        Antes de editar um modelo, faça uma cópia dele (Arquivo → Fazer uma cópia). Assim, se você "errar a mão" sem querer, o modelo original continua guardado — como ter um molde reserva na caixa de confeitos!
+    </div>
+
+    <h2>3.3 O segredo da consistência visual 🎨💎</h2>
+    <p>Você já reparou que toda loja de doce famosa tem uma "cara"? É a <strong>consistência visual</strong>: as mesmas cores e o mesmo estilo em tudo, para o cliente reconhecer a marca de longe — e lembrar dela na hora de pedir. Pense nas cores da doceria como o seu <strong>uniforme de trabalho</strong>: se você muda a roupa a cada dia, ninguém reconhece a loja. 😄</p>
+
+    <h3>As cores da Doceria da Ana (use sempre as mesmas!):</h3>
+    <ul>
+        <li>🌸 <strong>Rosa Pastel</strong> — a cor principal, fala de delicadeza e docura.</li>
+        <li>🍫 <strong>Marrom Cacau</strong> — a cor do chocolate, dos títulos e textos importantes.</li>
+        <li>🥛 <strong>Creme</strong> — o fundo limpo, que deixa tudo leve e elegante.</li>
+        <li>✨ <strong>Dourado/Mel</strong> — para os detalhes que brilham: preços, selos e destaques.</li>
+    </ul>
+
+    <h3>E as fontes? Aprenda a regra dos dois tipos ✍️</h3>
+    <p>Fontes são "estilos de letra". A regra é simples: <strong>use no máximo duas</strong>. Uma elegante para o título (como a Playfair Display, que lembra letra de convite de casamento) e uma limpa e moderna para o resto (como a Poppins, fácil de ler). Nada de misturar cinco fontes num cartaz — isso cansa o olho e barateia o visual.</p>
+
+    <h3>Receita para um status que vende 🍰📱</h3>
+    <ul>
+        <li>📢 <strong>No máximo 3 informações</strong> por imagem: o produto, o preço e o WhatsApp (ou o atalho "/pix").</li>
+        <li>🔠 <strong>Texto grande e curto</strong> — quem lê status está com pressa, e tela de celular é pequena.</li>
+        <li>🖼️ <strong>Uma foto boa</strong> vale mais que mil palavras: doces com luz natural, fundo limpo.</li>
+        <li>📅 <strong>Publique com frequência</strong> — um status por dia (ou por semana) mantém a doceria na memória do cliente.</li>
+    </ul>
+
+    <div class="alerta">
+        <span class="rotulo">🚨 Alerta de Segurança</span>
+        Baixe o Canva <strong>somente</strong> pelas lojas oficiais de aplicativos (Google Play ou App Store). Desconfie de links de "Canva Premium grátis" que aparecem em mensagens ou status: são armadilhas para roubar seus dados. O Canva tem versão gratuita oficial e segura — ela já dá conta do recado!
+    </div>
+
+    <p class="rodape-pagina">Capítulo 3 — Design Descomplicado com o Canva</p>
+</section>
+
+<!-- ==================== CONCLUSÃO ==================== -->
+<section class="pagina">
+    <h1 class="capitulo">Conclusão e Próximos Passos</h1>
+    <span class="capitulo-numero">🌟 Você no comando</span>
+
+    <h2>🌸 Ana, você chegou ao final desta cartilha!</h2>
+
+    <p>Respire fundo e sinta o orgulho: você acabou de aprender a <strong>proteger</strong> a sua doceria, a <strong>atender</strong> seus clientes com profissionalismo e a <strong>apresentar</strong> seus doces com um visual de dar água na boca. Isso não é pouco — é um passo gigante! 🚀</p>
+
+    <p>A tecnologia não veio para substituir o seu talento; ela veio para <strong>multiplicar</strong> o que você já faz de melhor. O doce que você prepara continua sendo o mesmo, feito com as mesmas mãos e o mesmo carinho — só que agora, a cidade inteira consegue encontrar você, conhecer o seu trabalho e pedir com um toque na tela. Essa é a verdadeira inclusão digital: <strong>tecnologia a serviço do seu negócio, e não o contrário</strong>. 💖</p>
+
+    <h2>📅 Seu plano dos 7 dias (imprima e cole na geladeira!)</h2>
+    <ol class="checklist">
+        <li>Ativar a Confirmação em Duas Etapas (Capítulo 1).</li>
+        <li>Preencher o Perfil Comercial completo, com endereço e horário (Capítulo 2).</li>
+        <li>Ativar a Mensagem de Saudação e a de Ausência (Capítulo 2).</li>
+        <li>Cadastrar as 3 Respostas Rápidas: /pix, /obrigado e /entrega (Capítulo 2).</li>
+        <li>Montar o Catálogo com os 4 doces e as descrições prontas (Capítulo 2).</li>
+        <li>Criar e publicar o primeiro Status com um modelo do Canva (Capítulo 3).</li>
+        <li>Comemorar: primeiro pedido digital chegou! 🎉</li>
+    </ol>
+
+    <div class="dica">
+        <span class="rotulo">🥇 Dica de Ouro Final</span>
+        A cada semana, escolha UM item do plano para melhorar: uma resposta rápida nova, uma foto melhor, um status mais bonito. Crescimento constante, do jeito de quem faz doces: uma camada de cada vez, no ponto certo. 😉
+    </div>
+
+    <h2>💌 Uma última palavra</h2>
+    <p>Querida Ana, você não está sozinha nessa jornada. Cada botão que você tocar, cada mensagem automática que responder, cada status publicado será uma conquista sua. Guarde esta cartilha como a primeira receita do seu negócio digital — e daqui a alguns meses, quando os pedidos estiverem chegando sozinhos, lembre-se: <strong>você construiu isso com as próprias mãos</strong>. E como tudo que sai das suas mãos: ficou doce, bonito e cheio de amor. 🍰✨</p>
+
+    <p style="margin-top:6mm"><strong>Com carinho,</strong><br>Equipe do Projeto de Extensão Universitária — CST em Análise e Desenvolvimento de Sistemas (UNINTER).</p>
+
+    <p class="rodape-pagina">Conclusão — Você no comando do seu negócio digital · Doceria da Ana · Ubiratã-PR</p>
+</section>
+
+</body>
+</html>
